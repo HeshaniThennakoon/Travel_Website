@@ -45,6 +45,10 @@
                         <a href="tel: +94 75 816 7490" class="d-inline-block mb-2 text-decoration-none text-dark">
                             <i class="bi bi-telephone-fill"></i> +94 75 816 7490
                         </a>
+                        <br>
+                        <a href="tel: +94 75 816 7490" class="d-inline-block mb-2 text-decoration-none text-dark">
+                            <i class="bi bi-telephone-fill"></i> +94 75 816 7490
+                        </a>
                         
                         <h5 class="mt-4">Email</h5>
                         <a href="mailto: thennakoonghm@gmail.com" class="d-inline-block mb-2 text-decoration-none text-dark">
