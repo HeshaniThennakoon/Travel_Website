@@ -61,11 +61,16 @@
                                 <h5 class="mb-3" style="font-size: 18px;">GUESTS</h5>
                                 <div class="d-flex">
                                     <div class="me-3">
-                                        <label class="form-label">Adults</label>
+                                        <label class="form-label">No. of Guests</label>
                                         <input type="number" class="form-control shadow-none">
                                     </div>
-                                    <div>
-                                        <label class="form-label">Children</label>
+                                </div>                                                           
+                            </div> 
+                            <div class="border lg-light p-3 rounded mb-3">
+                                <h5 class="mb-3" style="font-size: 18px;">Duration</h5>
+                                <div class="d-flex">
+                                    <div class="me-3">
+                                        <label class="form-label">No. of days</label>
                                         <input type="number" class="form-control shadow-none">
                                     </div>
                                 </div>                                                           
@@ -84,19 +89,16 @@
                         </div>
                         <div class="col-md-5 px-lg-3 px-md-3 px-0">
                             <h5 class="mb-3">Three days tour with Car</h5>
-                            <div class="features mb-3">
-                                <h6 class="mb-1">Features</h6>
+                            <div class="places mb-3">
+                                <h6 class="mb-1">Suggest Places</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Air Condition
+                                    <i class="bi bi-check-lg me-1"></i> Colombo
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Free Fuel
+                                    <i class="bi bi-check-lg me-1"></i> Sigiriya
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Free Cancelation
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> 8 hours/day
+                                    <i class="bi bi-check-lg me-1"></i> Kandy
                                 </span>
                             </div>
                             <div class="facilities mb-3">
@@ -113,16 +115,13 @@
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
                                     <i class="bi bi-check-lg me-1"></i> Wi-Fi
                                 </span>
-                            </div>
+                            </div> 
                             <div class="guests">
                                 <h6 class="mb-1">Guests</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> 2 Adults
+                                    <i class="bi bi-check-lg me-1"></i> 0-3 Guests
                                 </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> 1 Children
-                                </span>
-                            </div>                          
+                            </div>                         
                         </div>
                         <div class="col-md-2 d-flex flex-column justify-content-center text-center">
                             <h6 class="mb-4">$ 250</h6>
@@ -139,19 +138,16 @@
                         </div>
                         <div class="col-md-5 px-lg-3 px-md-3 px-0">
                             <h5 class="mb-3">Three days tour with Car</h5>
-                            <div class="features mb-3">
-                                <h6 class="mb-1">Features</h6>
+                            <div class="places mb-3">
+                                <h6 class="mb-1">Suggest Places</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Air Condition
+                                    <i class="bi bi-check-lg me-1"></i> Colombo
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Free Fuel
+                                    <i class="bi bi-check-lg me-1"></i> Sigiriya
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Free Cancelation
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> 8 hours/day
+                                    <i class="bi bi-check-lg me-1"></i> Kandy
                                 </span>
                             </div>
                             <div class="facilities mb-3">
@@ -172,12 +168,9 @@
                             <div class="guests">
                                 <h6 class="mb-1">Guests</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> 2 Adults
+                                    <i class="bi bi-check-lg me-1"></i> 0-3 Guests
                                 </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> 1 Children
-                                </span>
-                            </div>                          
+                            </div>                            
                         </div>
                         <div class="col-md-2 d-flex flex-column justify-content-center text-center">
                             <h6 class="mb-4">$ 250</h6>
@@ -194,19 +187,16 @@
                         </div>
                         <div class="col-md-5 px-lg-3 px-md-3 px-0">
                             <h5 class="mb-3">Three days tour with Car</h5>
-                            <div class="features mb-3">
-                                <h6 class="mb-1">Features</h6>
+                            <div class="places mb-3">
+                                <h6 class="mb-1">Suggest Places</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Air Condition
+                                    <i class="bi bi-check-lg me-1"></i> Colombo
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Free Fuel
+                                    <i class="bi bi-check-lg me-1"></i> Sigiriya
                                 </span>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Free Cancelation
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> 8 hours/day
+                                    <i class="bi bi-check-lg me-1"></i> Kandy
                                 </span>
                             </div>
                             <div class="facilities mb-3">
@@ -227,12 +217,9 @@
                             <div class="guests">
                                 <h6 class="mb-1">Guests</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> 2 Adults
+                                    <i class="bi bi-check-lg me-1"></i> 0-3 Guests
                                 </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> 1 Children
-                                </span>
-                            </div>                          
+                            </div>                      
                         </div>
                         <div class="col-md-2 d-flex flex-column justify-content-center text-center">
                             <h6 class="mb-4">$ 250</h6>
