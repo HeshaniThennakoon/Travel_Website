@@ -5,14 +5,12 @@
 
     // Team images for frontend
     define('ABOUT_IMG_PATH', SITE_URL.'images/about/Team/');
+    define('CAROUSEL_IMG_PATH', SITE_URL.'images/carousel/');
 
-    // Absolute path for uploads (now directly inside document root)
-    define('UPLOAD_IMAGE_PATH', 'E:/5.Projects/Travel Website/images/about/Team/');
-
-    // Folder (optional)
-    define('ABOUT_FOLDER','');
-
-
+    // Backend upload process 
+    define('UPLOAD_IMAGE_PATH', 'E:/5.Projects/Travel Website/images/');
+    define('ABOUT_FOLDER','about/Team/');
+    define('CAROUSEL_FOLDER','carousel/');
 
 
     function adminLogin()
