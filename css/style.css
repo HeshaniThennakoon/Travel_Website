@@ -57,6 +57,11 @@ input[type=number] {
   border-top-right-radius: 0.25rem;
 }
 
+.custom-alert{
+    position: fixed;
+    top: 80px;
+    right: 25px;
+}
 
 /* Packages page */
 
