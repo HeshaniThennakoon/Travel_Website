@@ -119,37 +119,22 @@
     <h3 class="my-5 fw-bold h-font text-center">MANAGEMENT TEAM</h3>
 
     <div class="container px-4">
-
         <div class="swiper mySwiper">
             <div class="swiper-wrapper mb-5">
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/Team/1.jpg" class="w-100">
-                    <h5 class="mt-2">Name one</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/Team/2.jpg" class="w-100">
-                    <h5 class="mt-2">Name two</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/Team/3.jpg" class="w-100">
-                    <h5 class="mt-2">Name three</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/Team/4.jpg" class="w-100">
-                    <h5 class="mt-2">Name four</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/Team/5.jpg" class="w-100">
-                    <h5 class="mt-2">Name five</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/Team/6.jpg" class="w-100">
-                    <h5 class="mt-2">Name six</h5>
-                </div>
-                <div class="swiper-slide bg-white text-center overflow-hidden rounded">
-                    <img src="images/about/Team/7.jpg" class="w-100">
-                    <h5 class="mt-2">Name seven</h5>
-                </div>
+                <?php
+                    $about_r = selectAll('team_details');
+                    $path = ABOUT_IMG_PATH;
+
+                    while($row = mysqli_fetch_assoc($about_r)){
+                        echo<<<data
+                            <div class="swiper-slide bg-white text-center overflow-hidden rounded">
+                                <img src="$path$row[picture]" class="w-100">
+                                <h5 class="mt-2">$row[name]</h5>
+                            </div>
+                        data;
+                    }
+                ?>
+                
             </div>
             <div class="swiper-pagination"></div>
         </div>
