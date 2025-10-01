@@ -34,7 +34,6 @@
 
         while($row = mysqli_fetch_assoc($res))
         {
-            // $path = CAROUSEL_IMG_PATH;
             $imgPath = CAROUSEL_IMG_PATH.$row['image'];
             echo <<<data
                 <div class="col-md-4 mb-3">

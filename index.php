@@ -18,24 +18,19 @@
     <div class="container-fluid px-lg-4 mt-4">
         <div class="swiper swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="images/carousel/1.jpg" class="w-100 d-block" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/carousel/2.jpg" class="w-100 d-block" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/carousel/3.jpg" class="w-100 d-block" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/carousel/4.jpg" class="w-100 d-block" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/carousel/5.jpg" class="w-100 d-block" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/carousel/6.jpg" class="w-100 d-block" />
-                </div>
+                <?php
+                    $res = selectAll('carousel');
+                    while($row = mysqli_fetch_assoc($res))
+                    {
+                        $imgPath = CAROUSEL_IMG_PATH.$row['image'];                        
+                        echo <<<data
+                            
+                            <div class="swiper-slide">
+                                <img src="$imgPath" class="w-100 d-block" />
+                            </div>
+                        data;
+                    }
+                ?>                
             </div>
         </div>
     </div>
@@ -201,30 +196,18 @@
 
     <script>
         var swiper = new Swiper(".swiper-container", {
-            spaceBetween: 30,
-            effect: "fade",
+            spaceBetween: 0,
+            slidesPerView: 1,
             loop: true,
             autoplay: {
                 delay: 3500,
                 disableOnInteraction: false,
             },
+            effect: "slide",
             pagination: {
                 el: ".swiper-pagination",
             },
-            breakpoints: {
-                320: {
-                    slidesPerView: 1,
-                },
-                640: {
-                    slidesPerView: 1,
-                },
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
-            }
+            
         }); 
     </script>
 

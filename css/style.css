@@ -30,14 +30,15 @@ input[type=number] {
 
 .swiper-container {
     width: 100%;
-    height: 700px; 
+    height: 800px;
 }
 
 .swiper-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
 }
+
 
 .custom-bg {
   background-color: var(--teal);
@@ -87,4 +88,25 @@ input[type=number] {
 
 .row > .col-lg-3 .box p {
   flex-grow: 1;
+}
+
+/* medium screens */
+@media (max-width: 992px) {
+    .swiper-container {
+        height: 600px; 
+    }
+}
+
+/* tablets */
+@media (max-width: 768px) {
+    .swiper-container {
+        height: 450px; 
+    }
+}
+
+/* mobile */
+@media (max-width: 576px) {
+    .swiper-container {
+        height: 300px; 
+    }
 }
