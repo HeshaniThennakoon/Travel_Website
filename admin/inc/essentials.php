@@ -1,12 +1,17 @@
 <?php
 
-    // frontend (URL used in <img src>)
-    define('SITE_URL','http://127.0.0.1:8080/gh_travelers/');
-    define('ABOUT_IMG_PATH',SITE_URL.'images/about/Team/');
+    // Base URL
+    define('SITE_URL','http://127.0.0.1:8080/');
 
-    // backend (filesystem path used for move_uploaded_file)
-    define('UPLOAD_IMAGE_PATH','E:/5.Projects/Travel Website/images/');
-    define('ABOUT_FOLDER','about/Team/');
+    // Team images for frontend
+    define('ABOUT_IMG_PATH', SITE_URL.'images/about/Team/');
+
+    // Absolute path for uploads (now directly inside document root)
+    define('UPLOAD_IMAGE_PATH', 'E:/5.Projects/Travel Website/images/about/Team/');
+
+    // Folder (optional)
+    define('ABOUT_FOLDER','');
+
 
 
 

@@ -224,21 +224,29 @@
                     </div>
                 </div>
 
-                <!-- Management Team Section -->
-
-                <div class="card border-0 shadow-sm mb-4">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <h5 class="card-title m-0">Management Team</h5>
-                            <button type="button" class="btn btn-dark shadow-none btn-sn" data-bs-toggle="modal" data-bs-target="#team-s">
-                                <i class="bi bi-file-plus"></i> Add
-                            </button>
-                        </div>
-                        
-                        <!-- Dynamic members will be inserted here by get_members() -->
-                        <div class="row" id="team-data"></div>
-
-                    </div>
+                <!-- Management Team Section --> 
+                <div class="card border-0 shadow-sm mb-4"> 
+                    <div class="card-body"> 
+                        <div class="d-flex align-items-center justify-content-between mb-3"> 
+                            <h5 class="card-title m-0">Management Team</h5> 
+                            <button type="button" class="btn btn-dark shadow-none btn-sn" data-bs-toggle="modal" data-bs-target="#team-s"> 
+                                <i class="bi bi-file-plus"></i> Add 
+                            </button> 
+                        </div> 
+                        <div class="row" id="team-data"> 
+                            <div class="col-md-2 mb-3"> 
+                                <div class="card bg-dark text-white"> 
+                                    <img src="<?php echo ABOUT_IMG_PATH.'1.jpg'; ?>" class="card-img"> 
+                                    <div class="card-img-overlay text-end"> 
+                                        <button type="button" class="btn btn-danger btn-sm shadow-none"> 
+                                            <i class="bi bi-trash"></i> Delete 
+                                        </button> 
+                                    </div> 
+                                    <p class="card-text text-center px-3 py-2">Random Name</p> 
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div> 
                 </div>
 
                 <!-- Management Team modal -->
