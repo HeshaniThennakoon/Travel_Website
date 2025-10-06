@@ -101,8 +101,8 @@
                                     <i class="bi bi-check-lg me-1"></i> Kandy
                                 </span>
                             </div>
-                            <div class="facilities mb-3">
-                                <h6 class="mb-1">Facilities</h6>
+                            <div class="Features mb-3">
+                                <h6 class="mb-1">Features</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
                                     <i class="bi bi-check-lg me-1"></i> Bottled Water
                                 </span>
@@ -150,8 +150,8 @@
                                     <i class="bi bi-check-lg me-1"></i> Kandy
                                 </span>
                             </div>
-                            <div class="facilities mb-3">
-                                <h6 class="mb-1">Facilities</h6>
+                            <div class="Features mb-3">
+                                <h6 class="mb-1">Features</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
                                     <i class="bi bi-check-lg me-1"></i> Bottled Water
                                 </span>
@@ -199,8 +199,8 @@
                                     <i class="bi bi-check-lg me-1"></i> Kandy
                                 </span>
                             </div>
-                            <div class="facilities mb-3">
-                                <h6 class="mb-1">Facilities</h6>
+                            <div class="Features mb-3">
+                                <h6 class="mb-1">Features</h6>
                                 <span class="badge rounded-pill bg-light text-dark text-wrap">
                                     <i class="bi bi-check-lg me-1"></i> Bottled Water
                                 </span>

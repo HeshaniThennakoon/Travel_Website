@@ -40,13 +40,19 @@
     if(isset($_POST['rem_feature']))
     {
         $frm_data = filteration($_POST);  
-        $values = [$frm_data['rem_feature']]; 
-
+        $values = [$frm_data['rem_feature']];
         
-        $query = "DELETE FROM `features` WHERE `id`=?";
-        $res = delete($query,$values,'i');
-        echo $res;
+        $check_q = select('SELECT * FROM `package_features` WHERE `features_id`=?',[$frm_data['rem_feature']],'i');
 
+        if(mysqli_num_rows($check_q)==0){
+            $query = "DELETE FROM `features` WHERE `id`=?";
+            $res = delete($query,$values,'i');
+            echo $res;
+        }
+        else{
+            echo 'package_added';
+        }
+        
     }
 
 
