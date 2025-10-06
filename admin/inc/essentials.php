@@ -6,11 +6,13 @@
     // Team images for frontend
     define('ABOUT_IMG_PATH', SITE_URL.'images/about/Team/');
     define('CAROUSEL_IMG_PATH', SITE_URL.'images/carousel/');
+    define('PACKAGES_IMG_PATH',SITE_URL.'images/packages/');
 
     // Backend upload process 
     define('UPLOAD_IMAGE_PATH', 'E:/5.Projects/Travel Website/images/');
     define('ABOUT_FOLDER','about/Team/');
     define('CAROUSEL_FOLDER','carousel/');
+    define('PACKAGES_FOLDER','packages/');
 
 
     function adminLogin()

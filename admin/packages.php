@@ -50,7 +50,8 @@
                                 <tbody id="package-data">                                    
                                 </tbody>
                             </table>
-                        </div>                        
+                        </div>
+
                     </div> 
                 </div>         
             </div>
@@ -199,6 +200,43 @@
                 </div>
             </form>
             
+        </div>
+    </div>
+
+    <!-- Manage package images modal -->
+
+    <div class="modal fade" id="package-images" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Package Name</h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="image-alert"></div>
+                    <div class="border-bottom border-3 pb-3 mb-3">
+                        <form id="add_image_form">
+                            <label class="form-label fw-bold">Add Image</label>
+                            <input type="file" name="image" accept=".jpg,.jpeg,.png,.webp" class="form-control shadow-none mb-3" required>
+                            <button class="btn custom-bg text-white shadow-none">ADD</button>
+                            <input type="hidden" name="package_id">
+                        </form>
+                    </div>
+                    <div class="table-responsive-lg" style="height: 350px; overflow-y: scroll;">
+                        <table class="table table-hover border text-center">
+                            <thead class="sticky-top">
+                                <tr class="bg-dark text-light sticky-top">
+                                    <th scope="col" width="60%" >Image</th>
+                                    <th scope="col">Thumb</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody id="package-image-data">                                    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -364,6 +402,130 @@
             }
 
             xhr.send('toggle_status='+id+'&value='+value); 
+        }
+
+        let add_image_form = document.getElementById('add_image_form');
+
+        add_image_form.addEventListener('submit',function(e){
+            e.preventDefault();
+            add_image();
+        });
+
+        function add_image()
+        {
+            let data = new FormData();
+            data.append('image',add_image_form.elements['image'].files[0]);
+            data.append('package_id',add_image_form.elements['package_id'].value);
+            data.append('add_image','');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/packages.php", true);
+
+            xhr.onload = function()
+            {
+                if(this.responseText == 'inv_img'){
+                    alert('error','Only JPG, WEBP or PNG images are allowed!','image-alert');
+                }
+                else if(this.responseText == 'inv_size'){
+                    alert('error','Image should be less than 5MB.','image-alert');
+                }
+                else if(this.responseText == 'upd_failed'){
+                    alert('error','Image upload failed. Server Down!','image-alert');
+                }
+                else{
+                    alert('success','New Image added!','image-alert');
+                    package_images(add_image_form.elements['package_id'].value,document.querySelector("#package-images .modal-title").innerText);
+                    add_image_form.reset();
+                }
+            }
+
+            xhr.send(data); 
+        }
+
+        function package_images(id,rname){
+            document.querySelector("#package-images .modal-title").innerText = rname;
+            add_image_form.elements['package_id'].value = id;
+            add_image_form.elements['image'].value = '';
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/packages.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function(){
+                document.getElementById('package-image-data').innerHTML = this.responseText;
+            }
+
+            xhr.send('get_package_images='+id); 
+        }
+
+        function rem_image(img_id,package_id){
+            let data = new FormData();
+            data.append('image_id',img_id);
+            data.append('package_id',package_id);
+            data.append('rem_image','');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/packages.php", true);
+
+            xhr.onload = function()
+            {
+                if(this.responseText == 1){
+                    alert('success','Image Removed!','image-alert');  
+                    package_images(package_id,document.querySelector("#package-images .modal-title").innerText);       
+                }
+                else{                    
+                    alert('error','Image removal failed!','image-alert');
+                }
+            }
+
+            xhr.send(data); 
+        }
+
+        function thumb_image(img_id,package_id){
+            let data = new FormData();
+            data.append('image_id',img_id);
+            data.append('package_id',package_id);
+            data.append('thumb_image','');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/packages.php", true);
+
+            xhr.onload = function()
+            {
+                if(this.responseText == 1){
+                    alert('success','Image Thumbnail Changed!','image-alert');  
+                    package_images(package_id,document.querySelector("#package-images .modal-title").innerText);       
+                }
+                else{                    
+                    alert('error','Thumbnail removal failed!','image-alert');
+                }
+            }
+
+            xhr.send(data); 
+        }
+
+        function remove_package(package_id){
+            if(confirm("Are you sure, you want to delete this room?"))
+            {
+                let data = new FormData();
+                data.append('package_id',package_id);
+                data.append('remove_package','');
+                
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "ajax/packages.php", true);
+
+                xhr.onload = function()
+                {
+                    if(this.responseText == 1){
+                        alert('success','Package removed!');  
+                        get_all_packages();
+                    }
+                    else{                    
+                        alert('error','Room removal failed!');
+                    }
+                }
+                xhr.send(data); 
+            }                     
         }
 
 
