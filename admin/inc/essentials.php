@@ -13,6 +13,10 @@
     define('ABOUT_FOLDER','about/Team/');
     define('CAROUSEL_FOLDER','carousel/');
     define('PACKAGES_FOLDER','packages/');
+    define('USERS_FOLDER','users/');
+
+    // sendgrid api key
+    define('SENDGRID_API_KEY',"<SENGRID API KEY>"); //Sendgrid API Key should be added here!
 
 
     function adminLogin()
@@ -86,6 +90,40 @@
             return true;
         }
         return false;
+    }
+
+    function uploadUserImage($image)
+    {
+        $valid_mime = ['image/jpeg','image/png','image/webp','image/jpg'];
+        $img_mime = $image['type'];
+
+        if (!in_array($img_mime, $valid_mime)) {
+            return 'inv_img';
+        }
+        else {
+            $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
+            $rname = 'IMG_' . random_int(11111,99999) . ".jpeg";
+
+            $img_path = UPLOAD_IMAGE_PATH.USERS_FOLDER.$rname;
+
+            if($ext == 'png' || $ext == 'PNG'){
+                $img = imagecreatefrompng($image['tmp_name']);
+            }
+            else if($ext == 'webp' || $ext == 'WEBP'){
+                $img = imagecreatefromwebp($image['tmp_name']);
+            }
+            else{
+                $img = imagecreatefromjpeg($image['tmp_name']);
+            }
+
+
+            if (imagejpeg($img,$img_path,75)) {
+                return $rname;
+            } 
+            else {
+                return 'upd_failed';
+            }
+        }
     }
 
 
