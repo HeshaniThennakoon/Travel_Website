@@ -24,10 +24,10 @@
         </p>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
 
-            <div class="col-lg-3 col-md-12 mb-lg-0 mb-4 align-self-start">
+            <div class="col-lg-3 col-md-12 mb-lg-0 mb-4 align-self-start ps-4">
                 <nav class="navbar navbar-expand-lg navbar-light bg-white rounded shadow">
                     <div class="container-fluid flex-lg-column align-items-stretch">
                         <h4 class="mt-2">FILTERS</h4>
@@ -82,152 +82,66 @@
 
             <div class="col-lg-9 col-md-12 px-4">
 
-                <div class="card mb-4 border-0 shadow">
-                    <div class="row g-0 p-3 align-items-stretch">
-                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
-                        <img src="images/packages/Colombo/colombo-3.jpg" class="img-fluid rounded w-100" style = "height:250px; object-fit:cover;">
-                        </div>
-                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                            <h5 class="mb-3">Three days tour with Car</h5>
-                            <div class="places mb-3">
-                                <h6 class="mb-1">Suggest Places</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Colombo
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Sigiriya
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Kandy
-                                </span>
-                            </div>
-                            <div class="Features mb-3">
-                                <h6 class="mb-1">Features</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Bottled Water
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Snacks
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Soft Drinks
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Wi-Fi
-                                </span>
-                            </div> 
-                            <div class="guests">
-                                <h6 class="mb-1">Guests</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> 0-3 Guests
-                                </span>
-                            </div>                         
-                        </div>
-                        <div class="col-md-2 d-flex flex-column justify-content-center text-center">
-                            <h6 class="mb-4">$ 250</h6>
-                            <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                            <a href="#" class="btn btn-sm w-100 btn-outline-dark shadow-none">More details</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card mb-4 border-0 shadow">
-                    <div class="row g-0 p-3 align-items-stretch">
-                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
-                        <img src="images/packages/Ella/ella-1.jpeg" class="img-fluid rounded w-100" style = "height:250px; object-fit:cover;">
-                        </div>
-                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                            <h5 class="mb-3">Three days tour with Car</h5>
-                            <div class="places mb-3">
-                                <h6 class="mb-1">Suggest Places</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Colombo
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Sigiriya
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Kandy
-                                </span>
-                            </div>
-                            <div class="Features mb-3">
-                                <h6 class="mb-1">Features</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Bottled Water
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Snacks
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Soft Drinks
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Wi-Fi
-                                </span>
-                            </div>
-                            <div class="guests">
-                                <h6 class="mb-1">Guests</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> 0-3 Guests
-                                </span>
-                            </div>                            
-                        </div>
-                        <div class="col-md-2 d-flex flex-column justify-content-center text-center">
-                            <h6 class="mb-4">$ 250</h6>
-                            <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                            <a href="#" class="btn btn-sm w-100 btn-outline-dark shadow-none">More details</a>
-                        </div>
-                    </div>
-                </div>
+                <?php 
+                    $package_res = select("SELECT * FROM `packages` WHERE `status`=? AND `removed`=?",[1,0],'ii');
 
-                <div class="card mb-4 border-0 shadow">
-                    <div class="row g-0 p-3 align-items-stretch">
-                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
-                        <img src="images/packages/Galle/galle-5.jpeg" class="img-fluid rounded w-100" style = "height:250px; object-fit:cover;">
-                        </div>
-                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                            <h5 class="mb-3">Three days tour with Car</h5>
-                            <div class="places mb-3">
-                                <h6 class="mb-1">Suggest Places</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Colombo
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Sigiriya
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Kandy
-                                </span>
+                    while($package_data = mysqli_fetch_assoc($package_res))
+                    {
+                        // get features of package
+
+                        $fea_q = mysqli_query($conn,"SELECT f.name FROM `features` f 
+                            INNER JOIN `package_features` rfea ON f.id = rfea.features_id 
+                            WHERE rfea.package_id = '$package_data[id]'");
+
+                        $features_data = "";
+                        while($fea_row = mysqli_fetch_assoc($fea_q)){
+                            $features_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
+                                <i class='bi bi-check-lg me-1'></i> $fea_row[name]
+                            </span>";
+                        }
+
+                        // get thumbnail of image
+
+                        $package_thumb = PACKAGES_IMG_PATH."thumbnail.png";
+                        $thumb_q = mysqli_query($conn,"SELECT * FROM `package_images` 
+                            WHERE `package_id`='$package_data[id]' 
+                            AND `thumb`='1'");
+
+                        if(mysqli_num_rows($thumb_q)>0){
+                            $thumb_res = mysqli_fetch_assoc($thumb_q);
+                            $package_thumb = PACKAGES_IMG_PATH.$thumb_res['image'];
+                        }
+
+                        // print package card
+
+                        echo<<<data
+                            <div class="card mb-4 border-0 shadow">
+                                <div class="row g-0 p-3 align-items-stretch">
+                                    <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
+                                        <img src="$package_thumb" class="img-fluid rounded w-100" style = "height:250px; object-fit:cover;">
+                                    </div>
+                                    <div class="col-md-5 px-lg-3 px-md-3 px-0">
+                                        <h5 class="mb-3">$package_data[name]</h5>
+                                        <div class="places mb-3">
+                                            <h6 class="mb-1">Suggest Places</h6>
+                                            $package_data[suggest_places]
+                                        </div>
+                                        <div class="Features mb-3">
+                                            <h6 class="mb-1">Features</h6>
+                                            $features_data
+                                        </div>                        
+                                    </div>
+                                    <div class="col-md-2 d-flex flex-column justify-content-center text-center">
+                                        <h6 class="mb-4">$ $package_data[price]</h6>
+                                        <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
+                                        <a href="package_details.php?id=$package_data[id]" class="btn btn-sm w-100 btn-outline-dark shadow-none">More details</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="Features mb-3">
-                                <h6 class="mb-1">Features</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Bottled Water
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Snacks
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Soft Drinks
-                                </span>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> Wi-Fi
-                                </span>
-                            </div>
-                            <div class="guests">
-                                <h6 class="mb-1">Guests</h6>
-                                <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                    <i class="bi bi-check-lg me-1"></i> 0-3 Guests
-                                </span>
-                            </div>                      
-                        </div>
-                        <div class="col-md-2 d-flex flex-column justify-content-center text-center">
-                            <h6 class="mb-4">$ 250</h6>
-                            <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
-                            <a href="#" class="btn btn-sm w-100 btn-outline-dark shadow-none">More details</a>
-                        </div>
-                    </div>
-                </div>
+                        data;
+
+                    }
+                ?>
 
             </div>
             

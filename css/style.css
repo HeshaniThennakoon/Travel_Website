@@ -78,6 +78,13 @@ input[type=number] {
     border-radius: 8px;
 }
 
+#packageCarousel .carousel-item img {
+    width: 400px;
+    height: 350px;
+    object-fit: fill; 
+    background-color: #f8f9fa;
+}
+
 
 /* About page */
 

@@ -8,6 +8,29 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
     <?php require('inc/links.php'); ?>
+    <style>
+        .card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        position: relative;
+        }
+        .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        }
+        .card-body {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding-bottom: 50px; /* add space for button */
+        }
+        .btn.position-absolute {
+        bottom: 15px;
+        left: 15px;
+        }
+
+    </style>
 
 </head>
 <body class="bg-light">
@@ -36,94 +59,70 @@
     </div>
 
 
-    <!-- Our Packages -->
+    <!-- Packages Details -->
 
     <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">OUR PACKAGES</h2>
 
     <div class="container">
-        <div class="row">
+        <div class="row d-flex flex-wrap align-items-stretch">
 
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card-border-0 shadow" style="max-width: 350px; margin: auto;">
-                    <img src="images/packages/Colombo/colombo-2.png" class="card-img-top">
-                    <div class="card-body">
-                        <h5>Colombo and around</h5>
-                        <p class="card-text">Center West - Capital City - 45 min from Bandaranaike International Airport</p>
-                        <div class="d-flex">
-                            <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Read more</a>
+            <?php 
+                $package_res = select("SELECT * FROM `packages` WHERE `status`=? AND `removed`=? ORDER BY `id` DESC LIMIT 3",[1,0],'ii');
+
+                while($package_data = mysqli_fetch_assoc($package_res))
+                {
+                    // get features of package
+
+                    $fea_q = mysqli_query($conn,"SELECT f.name FROM `features` f 
+                        INNER JOIN `package_features` rfea ON f.id = rfea.features_id 
+                        WHERE rfea.package_id = '$package_data[id]'");
+
+                    $features_data = "";
+                    while($fea_row = mysqli_fetch_assoc($fea_q)){
+                        $features_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
+                            <i class='bi bi-check-lg me-1'></i> $fea_row[name]
+                        </span>";
+                    }
+
+                    // get thumbnail of image
+
+                    $package_thumb = PACKAGES_IMG_PATH."thumbnail.png";
+                    $thumb_q = mysqli_query($conn,"SELECT * FROM `package_images` 
+                        WHERE `package_id`='$package_data[id]' 
+                        AND `thumb`='1'");
+
+                    if(mysqli_num_rows($thumb_q)>0){
+                        $thumb_res = mysqli_fetch_assoc($thumb_q);
+                        $package_thumb = PACKAGES_IMG_PATH.$thumb_res['image'];
+                    }
+
+                    // print package card
+
+                    echo<<<data
+                        <div class="col-lg-4 col-md-6 my-3 d-flex align-items-stretch">
+                            <div class="card border-0 shadow w-100" style="max-width: 350px; margin: auto;">
+                                <img src="$package_thumb" class="card-img-top" style="height: 200px; object-fit: cover;">
+                                <div class="card-body d-flex flex-column position-relative">
+                                    <h5 class="fw-bold mb-2">$package_data[name]</h5><br>
+                                    <h6 class="mb-1">Suggest Places</h6>
+                                    <p class="card-text flex-grow-1">$package_data[suggest_places]</p>
+
+                                    <!-- Button pinned to bottom-left -->
+                                    <a href="package_details.php?id=$package_data[id]" 
+                                    class="btn btn-sm text-white custom-bg shadow-none position-absolute bottom-3 start-3">
+                                    Read more
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card-border-0 shadow" style="max-width: 350px; margin: auto;">
-                    <img src="images/packages/Sigiriya/sigiriya-6.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <h5>Sigiriya and around</h5>
-                        <p class="card-text">Northern Province - Cultural Triangle - 3/4h from Colombo</p>
-                        <div class="d-flex">
-                            <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Read more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    data;
 
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card-border-0 shadow" style="max-width: 350px; margin: auto;">
-                    <img src="images/packages/Kandy/kandy-1.jpeg" class="card-img-top">
-                    <div class="card-body">
-                        <h5>Kandy and around</h5>
-                        <p class="card-text">Central Province - World Heritage site - 3,5h from Colombo</p>
-                        <div class="d-flex">
-                            <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Read more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card-border-0 shadow" style="max-width: 350px; margin: auto;">
-                    <img src="images/packages/NuwaraEliya/nuwaraeliya-5.jpeg" class="card-img-top">
-                    <div class="card-body">
-                        <h5>Nuwara Eliya and around</h5>
-                        <p class="card-text">Central Province - Tea Country Hills - 5,5 hours from Colombo or 2,5h from Kandy</p>
-                        <div class="d-flex">
-                            <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Read more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card-border-0 shadow" style="max-width: 350px; margin: auto;">
-                    <img src="images/packages/South coast/southcost-1.jpeg" class="card-img-top">
-                    <div class="card-body">
-                        <h5>South coast and around</h5>
-                        <p class="card-text">South Coast (North to South) - beach/surfing/snorkling (best season : October to April)</p>
-                        <div class="d-flex">
-                            <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Read more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card-border-0 shadow" style="max-width: 350px; margin: auto;">
-                    <img src="images/packages/Ella/ella-1.jpeg" class="card-img-top">
-                    <div class="card-body">
-                        <h5>Ella and around</h5>
-                        <p class="card-text">Central Province - Small yet popular town (Nine Arches Bridge) - 4h from Kandy</p>
-                        <div class="d-flex">
-                            <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Read more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+                }
+            ?>
 
             <div class="col-lg-12 text-center mt-5">
-                <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none ">More Packages >>></a>
+                <a href="packages.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none ">More Packages >>></a>
             </div>
         </div>
     </div>

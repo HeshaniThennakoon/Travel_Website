@@ -13,7 +13,6 @@
             <h5 class="mb-3">Links</h5>
             <a href="index.php" class="d-inline-block mb-2 text-dark text-decoration-none">Home</a> <br>
             <a href="packages.php" class="d-inline-block mb-2 text-dark text-decoration-none">Packages</a> <br>
-            <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Book now</a> <br>
             <a href="contact.php" class="d-inline-block mb-2 text-dark text-decoration-none">Contact Us</a> <br>
             <a href="about.php" class="d-inline-block mb-2 text-dark text-decoration-none">About</a>
         </div>
