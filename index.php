@@ -93,8 +93,14 @@
 
                     $book_btn = "";
 
-                    if(!$settings_r['shutdown']){
-                        $book_btn = "<a href='#' class='btn btn-sm text-white custom-bg shadow-none mb-2'>Book Now</a>";
+                    if(!$settings_r['shutdown'])
+                    {
+                        $login = 0;
+                        if(isset($_SESSION['login']) && $_SESSION['login']==true){
+                            $login = 1;
+                        }
+
+                        $book_btn = "<button onclick='checkLoginToBook($login,$package_data[id])' class='btn btn-sm text-white custom-bg shadow-none mb-2'>Book Now</button>";
                     }
 
                     // print package card
