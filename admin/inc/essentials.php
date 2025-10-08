@@ -7,6 +7,7 @@
     define('ABOUT_IMG_PATH', SITE_URL.'images/about/Team/');
     define('CAROUSEL_IMG_PATH', SITE_URL.'images/carousel/');
     define('PACKAGES_IMG_PATH',SITE_URL.'images/packages/');
+    define('USERS_IMG_PATH',SITE_URL.'images/users/');
 
     // Backend upload process 
     define('UPLOAD_IMAGE_PATH', 'E:/5.Projects/Travel Website/images/');
@@ -16,8 +17,9 @@
     define('USERS_FOLDER','users/');
 
     // sendgrid api key
-    define('SENDGRID_API_KEY',"<SENGRID API KEY>"); //Sendgrid API Key should be added here!
-
+    define('SENDGRID_API_KEY',"<Sendgrid API Key>"); //Sendgrid API Key should be added here!
+    define('SENDGRID_EMAIL',"heshanithennakoon118@gmail.com");
+    define('SENDGRID_NAME',"GH WEBDEV");
 
     function adminLogin()
     {

@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="css/style.css">
 
 <?php
+    
+    session_start();
+    date_default_timezone_set("Asia/Kolkata");
+
     require('admin/inc/db_config.php');
     require('admin/inc/essentials.php');
 
