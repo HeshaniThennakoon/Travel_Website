@@ -24,10 +24,6 @@
         position: relative;
         padding-bottom: 50px;
         }
-        .btn.position-absolute {
-        bottom: 15px;
-        left: 15px;
-        }
 
     </style>
 
@@ -95,6 +91,12 @@
                         $package_thumb = PACKAGES_IMG_PATH.$thumb_res['image'];
                     }
 
+                    $book_btn = "";
+
+                    if(!$settings_r['shutdown']){
+                        $book_btn = "<a href='#' class='btn btn-sm text-white custom-bg shadow-none mb-2'>Book Now</a>";
+                    }
+
                     // print package card
 
                     echo<<<data
@@ -105,12 +107,8 @@
                                     <h5 class="fw-bold mb-2">$package_data[name]</h5><br>
                                     <h6 class="mb-1">Suggest Places</h6>
                                     <p class="card-text flex-grow-1">$package_data[suggest_places]</p>
-
-                                    <!-- Button pinned to bottom-left -->
-                                    <a href="package_details.php?id=$package_data[id]" 
-                                    class="btn btn-sm text-white custom-bg shadow-none position-absolute bottom-3 start-3">
-                                    Read more
-                                    </a>
+                                    $book_btn
+                                    <a href="package_details.php?id=$package_data[id]" class="btn btn-sm w-100 btn-outline-dark shadow-none">Read more</a>
                                 </div>
                             </div>
                         </div>

@@ -111,6 +111,13 @@
                             $package_thumb = PACKAGES_IMG_PATH.$thumb_res['image'];
                         }
 
+                        
+                        $book_btn = "";
+
+                        if(!$settings_r['shutdown']){
+                            $book_btn = "<a href='#' class='btn btn-sm w-100 text-white custom-bg shadow-none mb-2'>Book Now</a>";
+                        }
+
                         // print package card
 
                         echo<<<data
@@ -132,7 +139,7 @@
                                     </div>
                                     <div class="col-md-2 d-flex flex-column justify-content-center text-center">
                                         <h6 class="mb-4">$ $package_data[price]</h6>
-                                        <a href="#" class="btn btn-sm w-100 text-white custom-bg shadow-none mb-2">Book Now</a>
+                                        $book_btn
                                         <a href="package_details.php?id=$package_data[id]" class="btn btn-sm w-100 btn-outline-dark shadow-none">More details</a>
                                     </div>
                                 </div>
