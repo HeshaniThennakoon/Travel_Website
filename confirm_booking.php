@@ -79,6 +79,7 @@
                             <img src="$package_thumb" class="img-fluid rounded w-100 mb-3" style = "height:250px; object-fit:cover;">
                             <h5>$package_data[name]</h5>
                             <h6>$$package_data[price]</h6>
+                            <h6 class="text-secondary">Duration: $package_data[no_of_days] days</h6>
                         </div>
                     data;
                 
@@ -88,7 +89,7 @@
             <div class="col-lg-5 col-md-12 px-4">
                 <div class="card mb-4 border-0 shadow-sm rounded-3">
                     <div class="card-body">
-                        <form action="">
+                        <form action="#" id="booking_form">
                             <h6 class="mb-3">BOOKING DETAILS</h6>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -103,13 +104,17 @@
                                     <label class="form-label">Address</label>
                                     <textarea name="address" class="form-control shadow-none" rows="1" required><?php echo $user_data['address'] ?></textarea>
                                 </div>
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Tour Duration</label>
+                                    <input type="text" id="tour_days" class="form-control shadow-none" value="<?php echo $package_data['no_of_days'].' days'; ?>" readonly>
+                                </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Arrival Date</label>
-                                    <input name="arrival" type="date" class="form-control shadow-none" required>
+                                    <input name="arrival" onchange="check_availability()" type="date" class="form-control shadow-none" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label">Leaving Date</label>
-                                    <input name="leaving" type="date" class="form-control shadow-none" required>
+                                    <input name="leaving" onchange="check_availability()" type="date" class="form-control shadow-none" readonly>
                                 </div>
                                 <div class="col-12">
                                     <div class="spinner-border text-info mb-3 d-none" id="info_loader" role="status">
@@ -117,7 +122,7 @@
                                     </div>
 
                                     <h6 class="mb-3 text-danger" id="pay_info">Provide arrival-date & leaving-date !</h6>
-                                    
+
                                     <button name="pay_now" class="btn w-100 text-white custom-bg shadow-none mb-1" disabled>Pay Now</button>
                                 </div>
                             </div>
@@ -132,6 +137,88 @@
 
 
     <?php require('inc/footer.php'); ?>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const booking_form = document.getElementById('booking_form');
+            const info_loader = document.getElementById('info_loader');
+            const pay_info = document.getElementById('pay_info');
+            const tour_days_input = document.getElementById('tour_days');
+
+            if (!booking_form || !tour_days_input) return;
+
+            const tour_days = parseInt(tour_days_input.value);
+
+            function check_availability() {
+                const arrival_input = booking_form.elements['arrival'];
+                const leaving_input = booking_form.elements['leaving'];
+                const pay_now_btn = booking_form.elements['pay_now'];
+
+                const arrival_val = arrival_input.value;
+                let leaving_val = leaving_input.value;
+
+                pay_now_btn.setAttribute('disabled', true);
+
+                // Auto-select leaving date based on tour duration
+                if (arrival_val !== '' && (leaving_val === '' || document.activeElement === arrival_input)) {
+                    const arrivalDate = new Date(arrival_val);
+                    arrivalDate.setDate(arrivalDate.getDate() + tour_days);
+                    const leavingDateStr = arrivalDate.toISOString().split('T')[0];
+                    leaving_input.value = leavingDateStr;
+                    leaving_val = leavingDateStr;
+                }
+
+                // Proceed to check availability only if both dates are set
+                if (arrival_val !== '' && leaving_val !== '') {
+                    pay_info.classList.add('d-none');                    
+                    pay_info.classList.replace('text-dark','text-danger');                    
+                    info_loader.classList.remove('d-none');
+
+                    let data = new FormData();
+
+                    data.append('check_availability', '');
+                    data.append('arrival_date', arrival_val);
+                    data.append('leaving_date', leaving_val);
+
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("POST", "ajax/confirm_booking.php", true);
+
+                    xhr.onload = function () {
+                        info_loader.classList.add('d-none');
+                        let data = JSON.parse(this.responseText);
+
+                        if (data.status === 'arrival_leaving_equal') {
+                            pay_info.innerText = "You cannot leaving on the same day!";
+                        } 
+                        else if(data.status === 'leaving_earlier') {
+                            pay_info.innerText = "Leaving date is earlier than arrival date!"
+                        }
+                        else if(data.status === 'arrival_date_earlier') {
+                            pay_info.innerText = "Arrival date is earlier than today's date!"
+                        }
+                        else if(data.status === 'unavailable') {
+                            pay_info.innerText = "Tour not available for this arrival date!"
+                        }
+                        else{
+                            pay_info.innerHTML = "No. of Days: "+data.days+"<br>Total Amount to Pay: $"+data.payment;
+                            pay_info.classList.replace('text-danger','text-dark'); 
+                            booking_form.elements['pay_now'].removeAttribute('disabled');
+                        }
+
+                        pay_info.classList.remove('d-none');
+                        info_loader.classList.add('d-none');
+                    };
+
+                    xhr.send(data);
+                }
+            }
+
+            // Make function accessible to HTML onchange event
+            window.check_availability = check_availability;
+        });
+    </script>
+
 
 </body>
 </html>

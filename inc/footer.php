@@ -179,7 +179,13 @@
                 alert('error',"Incorrect Password!");
             }
             else{
-                window.location = window.location.pathname;
+                let fileurl = window.location.href.split('/').pop().split('?').shift();
+                if(fileurl == 'package_details.php'){
+                    window.location =  window.location.href;
+                }
+                else{
+                    window.location = window.location.pathname;
+                }
             }
 
         }
@@ -236,6 +242,14 @@
         
     });
 
+    function checkLoginToBook(status,package_id){
+        if(status){
+            window.location.href = 'confirm_booking.php?id='+package_id;
+        }
+        else{
+            alert('error','Please login to book your tour!');
+        }
+    }
 
     setActive();
 </script>
