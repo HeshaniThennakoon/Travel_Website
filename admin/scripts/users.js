@@ -60,9 +60,10 @@ function search_user(username){
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function(){
+        document.getElementById('users-data').innerHTML = this.responseText;
     }
 
-    xhr.send('search_user&name='+username); 
+    xhr.send('search_user=&name='+username); 
 }
 
 
