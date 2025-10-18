@@ -198,7 +198,7 @@
                             pay_info.innerText = "Arrival date is earlier than today's date!"
                         }
                         else if(data.status === 'unavailable') {
-                            pay_info.innerText = "Tour not available for this arrival date!"
+                            pay_info.innerText = "Tour not available for this selected dates!"
                         }
                         else{
                             pay_info.innerHTML = "No. of Days: "+data.days+"<br>Total Amount to Pay: $"+data.payment;

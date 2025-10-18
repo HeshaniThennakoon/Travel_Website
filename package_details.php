@@ -102,7 +102,7 @@
 
                             echo<<<guests
                                 <div class="mb-3">
-                                    <h6 class="mb-1">Guests</h6>
+                                    <h6 class="mb-1">No of Guests</h6>
                                     <span class="badge rounded-pill bg-light text-dark text-wrap">
                                         <i class="bi bi-check-lg me-1"></i> $package_data[no_of_guests] guests
                                     </span>

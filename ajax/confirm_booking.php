@@ -37,9 +37,35 @@
         }
         else{
             session_start();
-            $_SESSION['package'];
 
             // run query to ckeck the days are available or not
+            $query = "SELECT COUNT(*) AS total_conflicts
+                FROM `booking_order`
+                WHERE `booking_status`='booked'
+                AND `package_id`=?
+                AND (
+                    (`arrival_date` < ? AND `leaving_date` > ?)
+                    OR (`arrival_date` BETWEEN ? AND ?)
+                    OR (`leaving_date` BETWEEN ? AND ?)
+                )
+            ";
+
+            $values = [
+                $_SESSION['package']['id'],
+                $frm_data['leaving_date'], $frm_data['arrival_date'],
+                $frm_data['arrival_date'], $frm_data['leaving_date'],
+                $frm_data['arrival_date'], $frm_data['leaving_date']
+            ];
+
+            $result = select($query, $values, 'issssss');
+            $fetch = mysqli_fetch_assoc($result);
+
+            if ($fetch['total_conflicts'] > 0) {
+                echo json_encode(["status" => "unavailable"]);
+                exit;
+            }
+
+
 
             $count_days = date_diff($arrival_date,$leaving_date) -> days;
             $payement = $_SESSION['package']['price'];
