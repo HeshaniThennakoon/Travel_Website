@@ -49,9 +49,9 @@ if ($status === 'success') {
 } else {
     // Failure
     $trans_id = 'TRANS' . time();
-    $trans_resp_msg = 'TXN_FAILED';
+    $trans_resp_msg = 'Your booking has been declined by your bank.';
     $stmt = $conn->prepare("UPDATE booking_order 
-        SET trans_id=?, trans_status='failed', booking_status='payment failed', trans_resp_msg=? 
+        SET trans_id=?, trans_status='failed', booking_status='payment failed', trans_resp_msg=?
         WHERE order_id=?");
     $stmt->bind_param("sss", $trans_id, $trans_resp_msg, $order_id);
     $stmt->execute();
