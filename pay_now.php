@@ -36,8 +36,8 @@ $booking_id = $conn->insert_id;
 // Insert booking details
 $stmt2 = $conn->prepare("INSERT INTO booking_details 
     (booking_id, package_name, price, total_pay, user_name, phonenum, address)
-    VALUES (?, ?, 0, 0, ?, ?, ?)");
-$stmt2->bind_param("issss", $booking_id, $package['name'], $name, $phonenum, $address);
+    VALUES (?, ?, ?, 0, ?, ?, ?)");
+$stmt2->bind_param("isssss", $booking_id, $package['name'], $package['price'], $name, $phonenum, $address);
 $stmt2->execute();
 
 // Create Stripe Checkout Session

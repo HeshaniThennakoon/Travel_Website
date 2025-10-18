@@ -30,34 +30,34 @@ try {
 <meta charset="UTF-8">
 <title>Payment Response</title>
 <style>
-body { 
-    font-family: Arial, sans-serif; 
-    background:#f8f9fa; 
-}
-.card { 
-    background:white; 
-    width:450px; 
-    margin:80px auto; 
-    padding:30px; 
-    border-radius:10px; 
-    box-shadow:0 4px 12px rgba(0,0,0,0.08); 
-    text-align:center; 
-}
-button { 
-    padding:12px 18px; 
-    border:none; 
-    border-radius:6px; 
-    margin:10px; 
-    cursor:pointer; 
-    font-size:16px; 
-    color:#fff; 
-}
-.success { 
-    background-color:#28a745; 
-}
-.failure { 
-    background-color:#dc3545; 
-}
+    body { 
+        font-family: Arial, sans-serif; 
+        background:#f8f9fa; 
+    }
+    .card { 
+        background:white; 
+        width:450px; 
+        margin:80px auto; 
+        padding:30px; 
+        border-radius:10px; 
+        box-shadow:0 4px 12px rgba(0,0,0,0.08); 
+        text-align:center; 
+    }
+    button { 
+        padding:12px 18px; 
+        border:none; 
+        border-radius:6px; 
+        margin:10px; 
+        cursor:pointer; 
+        font-size:16px; 
+        color:#fff; 
+    }
+    .success { 
+        background-color:#28a745; 
+    }
+    .failure { 
+        background-color:#dc3545; 
+    }
 </style>
 </head>
 <body>
