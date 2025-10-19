@@ -1,7 +1,6 @@
 <?php
     require('../admin/inc/db_config.php');
     require('../admin/inc/essentials.php');
-    require('../inc/sendgrid/sendgrid-php.php');
 
     date_default_timezone_set("Asia/Kolkata");
 
@@ -39,6 +38,7 @@
             session_start();
 
             // run query to ckeck the days are available or not
+            
             $query = "SELECT COUNT(*) AS total_conflicts
                 FROM `booking_order`
                 WHERE `booking_status`='booked'

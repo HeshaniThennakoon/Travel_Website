@@ -58,9 +58,8 @@
                         $status_bg = 'bg-success';
                         if($data['arrival'] == 1)
                         {
-                            $btn = "<a href='generate_pdf.php?gen_pdf&id=$data[booking_id]' class='btn btn-dark btn-sm shadow-none'>Download PDF</a>
-                                <button type='button' class='btn btn-dark btn-sm shadow-none'>Rate & Review</button>
-                            ";
+                            $btn = "<a href='generate_pdf.php?gen_pdf&id=$data[booking_id]' class='btn btn-dark btn-sm shadow-none'>Download PDF</a>                                
+                            "; 
                         }
                         else{
                             $btn = "<button onclick='cancel_booking($data[booking_id])' type='button' class='btn btn-danger btn-sm shadow-none'>Cancel</button>";

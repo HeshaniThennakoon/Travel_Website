@@ -34,43 +34,62 @@
                         <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse flex-column align-items-stretch mt-3" id="filterDropDown">
+                            <!-- Check Availability -->
                             <div class="border lg-light p-3 rounded mb-3">
-                                <h5 class="mb-3" style="font-size: 18px;">CHECK AVAILABILITY</h5>
+                                <h5 class="d-flex align-items-center justify-content-between mb-3" style="font-size: 18px;">
+                                    <span>CHECK AVAILABILITY</span>
+                                    <button id="chk_avail_btn" onclick="chk_avail_clear()" class="btn shadow-none btn-sm text-secondary">Reset</button>
+                                </h5>
                                 <label class="form-label">Arrival-date</label>
-                                <input type="date" class="form-control shadow-none mb-3">
+                                <input type="date" class="form-control shadow-none mb-3" id="arrival_date" onchange="chk_avail_filter()">
                                 <label class="form-label">Leaving-date</label>
-                                <input type="date" class="form-control shadow-none">
+                                <input type="date" class="form-control shadow-none" id="leaving_date" onchange="chk_avail_filter()">
                             </div> 
+
+                            <!-- Vehicle Type -->
                             <div class="border lg-light p-3 rounded mb-3">
-                                <h5 class="mb-3" style="font-size: 18px;">VEHICLES</h5>
+                                <h5 class="d-flex align-items-center justify-content-between mb-3" style="font-size: 18px;">
+                                    <span>VEHICLES</span>
+                                    <button id="vehicle_btn" onclick="vehicle_clear()" class="btn shadow-none btn-sm text-secondary">Reset</button>
+                                </h5>
                                 <div class="mb-2">
-                                    <input type="checkbox" id="v1" class="form-check-input shadow-none me-1">
+                                    <input type="checkbox" id="v1" onclick="fetch_packages()" class="form-check-input shadow-none me-1">
                                     <label class="form-check-label" for="v1">Car (1-3 pax)</label>
                                 </div>
                                 <div class="mb-2">
-                                    <input type="checkbox" id="v2" class="form-check-input shadow-none me-1">
+                                    <input type="checkbox" id="v2" onclick="fetch_packages()" class="form-check-input shadow-none me-1">
                                     <label class="form-check-label" for="v2">Mini Van (1-6 pax)</label>
                                 </div>
                                 <div class="mb-2">
-                                    <input type="checkbox" id="v3" class="form-check-input shadow-none me-1">
+                                    <input type="checkbox" id="v3" onclick="fetch_packages()" class="form-check-input shadow-none me-1">
                                     <label class="form-check-label" for="v3">Large Van (1-10 pax)</label>
                                 </div>                                
                             </div>
+
+                            <!-- Guests -->
                             <div class="border lg-light p-3 rounded mb-3">
-                                <h5 class="mb-3" style="font-size: 18px;">GUESTS</h5>
+                                <h5 class="d-flex align-items-center justify-content-between mb-3" style="font-size: 18px;">
+                                    <span>GUESTS</span>
+                                    <button id="guests_btn" onclick="guests_clear()" class="btn shadow-none btn-sm text-secondary">Reset</button>
+                                </h5>
                                 <div class="d-flex">
                                     <div class="me-3">
                                         <label class="form-label">No. of Guests</label>
-                                        <input type="number" class="form-control shadow-none">
+                                        <input type="number" min="1" id="guests" oninput="guests_filter()" class="form-control shadow-none">
                                     </div>
                                 </div>                                                           
                             </div> 
+
+                            <!-- Duration -->
                             <div class="border lg-light p-3 rounded mb-3">
-                                <h5 class="mb-3" style="font-size: 18px;">Duration</h5>
+                                <h5 class="d-flex align-items-center justify-content-between mb-3" style="font-size: 18px;">
+                                    <span>Duration</span>
+                                    <button id="days_btn" onclick="days_clear()" class="btn shadow-none btn-sm text-secondary">Reset</button>
+                                </h5>
                                 <div class="d-flex">
                                     <div class="me-3">
                                         <label class="form-label">No. of days</label>
-                                        <input type="number" class="form-control shadow-none">
+                                        <input type="number" min="1" id="days" oninput="days_filter()" class="form-control shadow-none">
                                     </div>
                                 </div>                                                           
                             </div>                          
@@ -79,86 +98,114 @@
                 </nav>
             </div>
 
-            <div class="col-lg-9 col-md-12 px-4">
-
-                <?php 
-                    $package_res = select("SELECT * FROM `packages` WHERE `status`=? AND `removed`=?",[1,0],'ii');
-
-                    while($package_data = mysqli_fetch_assoc($package_res))
-                    {
-                        // get features of package
-
-                        $fea_q = mysqli_query($conn,"SELECT f.name FROM `features` f 
-                            INNER JOIN `package_features` rfea ON f.id = rfea.features_id 
-                            WHERE rfea.package_id = '$package_data[id]'");
-
-                        $features_data = "";
-                        while($fea_row = mysqli_fetch_assoc($fea_q)){
-                            $features_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
-                                <i class='bi bi-check-lg me-1'></i> $fea_row[name]
-                            </span>";
-                        }
-
-                        // get thumbnail of image
-
-                        $package_thumb = PACKAGES_IMG_PATH."thumbnail.png";
-                        $thumb_q = mysqli_query($conn,"SELECT * FROM `package_images` 
-                            WHERE `package_id`='$package_data[id]' 
-                            AND `thumb`='1'");
-
-                        if(mysqli_num_rows($thumb_q)>0){
-                            $thumb_res = mysqli_fetch_assoc($thumb_q);
-                            $package_thumb = PACKAGES_IMG_PATH.$thumb_res['image'];
-                        }
-
-                        
-                        $book_btn = "";
-
-                        if(!$settings_r['shutdown'])
-                        {
-                            $login = 0;
-                            if(isset($_SESSION['login']) && $_SESSION['login']==true){
-                                $login = 1;
-                            }
-                            
-                            $book_btn = "<button onclick='checkLoginToBook($login,$package_data[id])' class='btn btn-sm w-100 text-white custom-bg shadow-none mb-2'>Book Now</button>";
-                        }
-
-                        // print package card
-
-                        echo<<<data
-                            <div class="card mb-4 border-0 shadow">
-                                <div class="row g-0 p-3 align-items-stretch">
-                                    <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
-                                        <img src="$package_thumb" class="img-fluid rounded w-100" style = "height:250px; object-fit:cover;">
-                                    </div>
-                                    <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                                        <h5 class="mb-3">$package_data[name]</h5>
-                                        <div class="places mb-3">
-                                            <h6 class="mb-1">Suggest Places</h6>
-                                            $package_data[suggest_places]
-                                        </div>
-                                        <div class="Features mb-3">
-                                            <h6 class="mb-1">Features</h6>
-                                            $features_data
-                                        </div>                        
-                                    </div>
-                                    <div class="col-md-2 d-flex flex-column justify-content-center text-center">
-                                        <h6 class="mb-4">$ $package_data[price]</h6>
-                                        $book_btn
-                                        <a href="package_details.php?id=$package_data[id]" class="btn btn-sm w-100 btn-outline-dark shadow-none">More details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        data;
-
-                    }
-                ?>
-
+            <div class="col-lg-9 col-md-12 px-4" id="packages-data">
             </div>
             
         </div>
     </div>
+
+    <script>
+        
+        let packages_data = document.getElementById('packages-data');
+        let arrival_date = document.getElementById('arrival_date');
+        let leaving_date = document.getElementById('leaving_date');
+        let chk_avail_btn = document.getElementById('chk_avail_btn');
+
+        let guests_btn = document.getElementById('guests_btn');
+        let guests = document.getElementById('guests');
+
+        let days_btn = document.getElementById('days_btn');
+        let days = document.getElementById('days');
+
+        function fetch_packages(){
+            let chk_avail = JSON.stringify({
+                arrival_date : arrival_date.value,
+                leaving_date : leaving_date.value
+            });
+
+            let guestData = JSON.stringify({
+                guests: guests.value
+            });
+
+            let daysData = JSON.stringify({
+                days : days.value
+            });
+
+            let vehicle_types = [];
+            if(document.getElementById('v1').checked) vehicle_types.push('Car');
+            if(document.getElementById('v2').checked) vehicle_types.push('Mini Van');
+            if(document.getElementById('v3').checked) vehicle_types.push('Large Van');
+
+            let vehicleData = JSON.stringify({
+                vehicles: vehicle_types
+            });
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "ajax/packages.php?fetch_packages&chk_avail="+chk_avail+"&guests="+guestData+"&days="+daysData+"&vehicles="+vehicleData, true);
+
+            xhr.onprogress = function(){
+                packages_data.innerHTML = '<div class="spinner-border text-info mb-3 d-block mx-auto" id="loader" role="status"><span class="visually-hidden">Loading...</span></div>';
+            }
+
+            xhr.onload = function(){
+                packages_data.innerHTML = this.responseText;
+            }
+
+            xhr.send();
+        }
+
+        function chk_avail_filter(){
+            if(arrival_date.value != '' && leaving_date.value != ''){
+                fetch_packages();
+                chk_avail_btn.classList.remove('d-none');
+            }
+        }
+
+        function chk_avail_clear(){
+            arrival_date.value='';
+            leaving_date.value='';
+            chk_avail_btn.classList.add('d-none');
+            fetch_packages();            
+        }
+
+        function guests_filter(){
+            if(guests.value > 0){
+                fetch_packages();
+                guests_btn.classList.remove('d-none');
+            }
+        }
+
+        function guests_clear(){
+            guests.value = '';
+            guests_btn.classList.add('d-none');
+            fetch_packages();
+        }
+
+        function days_filter(){
+            if(days.value > 0){
+                fetch_packages();
+                days_btn.classList.remove('d-none');
+            }
+        }
+
+        function days_clear(){
+            days.value = '';
+            days_btn.classList.add('d-none');
+            fetch_packages();
+        }
+
+        function vehicle_clear(){
+            document.getElementById('v1').checked = false;
+            document.getElementById('v2').checked = false;
+            document.getElementById('v3').checked = false;
+            fetch_packages();
+        }
+
+        window.onload = function(){
+            fetch_packages();
+        }
+
+    </script>
 
 
     <?php require('inc/footer.php'); ?>
