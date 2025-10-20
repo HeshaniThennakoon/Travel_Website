@@ -48,12 +48,23 @@ if ($status === 'success') {
 
 } else {
     // Failure
+    $q = $conn->prepare("SELECT p.price 
+                         FROM booking_order bo 
+                         JOIN packages p ON bo.package_id = p.id 
+                         WHERE bo.order_id = ? LIMIT 1");
+    $q->bind_param("s", $order_id);
+    $q->execute();
+    $res = $q->get_result()->fetch_assoc();
+    $trans_amt = $res['price'] ?? 0;
+
     $trans_id = 'TRANS' . time();
     $trans_resp_msg = 'Your booking has been declined by your bank.';
+
+    // Update booking_order
     $stmt = $conn->prepare("UPDATE booking_order 
-        SET trans_id=?, trans_status='failed', booking_status='payment failed', trans_resp_msg=?
+        SET trans_id=?, trans_amt=?, trans_status='failed', booking_status='payment failed', trans_resp_msg=?
         WHERE order_id=?");
-    $stmt->bind_param("sss", $trans_id, $trans_resp_msg, $order_id);
+    $stmt->bind_param("sdss", $trans_id, $trans_amt, $trans_resp_msg, $order_id);
     $stmt->execute();
 
     header("Location: pay_status.php?status=failure");
