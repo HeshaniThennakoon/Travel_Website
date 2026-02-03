@@ -1,160 +1,121 @@
-🌍 Travellers – Travel Website with CRM & AI Chatbot
 
-🔗 Live Demo: https://travellers.infinityfreeapp.com/
+# 🌍 Travellers – Travel Website with CRM & AI Chatbot
 
-A CRM-enabled travel website with an AI-powered chatbot that helps users explore destinations, search travel packages, and receive instant support.
-The platform also includes backend CRM features to manage users, leads, bookings, and customer interactions.
+🚀 **Live Demo:** https://travellers.infinityfreeapp.com/
 
-📌 Project Overview
+Travellers is a **CRM-enabled travel website** that allows users to explore travel destinations, search packages, book trips, and get instant assistance via an **AI-powered chatbot**.  
+The system also includes backend **CRM capabilities** to manage users, leads, bookings, and support interactions efficiently.
 
-Travellers is designed as a full-stack web application that combines:
+---
 
-A modern travel booking website
+## ✨ Key Features
 
-Conversational AI chatbot
+### 🌐 Frontend
+- Destination & travel package showcase  
+- Trip search and booking flow  
+- User registration & login  
+- Responsive design (mobile & desktop)  
+- Clean and intuitive UI  
 
-CRM system for managing customer data and interactions
+### 🤖 AI Chatbot
+- Persistent chatbot widget on all pages  
+- Destination recommendations  
+- Booking assistance  
+- FAQ & automated support  
+- Lead generation from conversations  
 
-This project demonstrates skills in web development, CRM concepts, chatbot integration, and deployment using free hosting platforms.
+### 🧠 CRM System
+- User profile management  
+- Trip history tracking  
+- Lead management  
+- Support ticket creation  
+- Analytics & reporting  
+- Campaign triggers (email/SMS – future scope)  
 
-✨ Key Features
-🌐 Frontend
+---
 
-Responsive travel website (desktop & mobile)
+## 👥 User Roles
 
-Destination & package listings
+- **Visitor** – Browse trips & chat with the bot  
+- **Registered User** – Book trips, manage profile, view history  
+- **Admin** – Manage users, leads, trips, and reports  
+- **Support Agent** – Handle customer tickets and inquiries  
 
-Trip search functionality
+---
 
-User registration & login
+## 📄 Pages Overview
 
-Simple and clean UI/UX
+| Page | Description |
+|-----|------------|
+| Home | Featured trips, chatbot |
+| Search Results | Filtered travel packages, search bar |
+| Booking | Step-by-step booking process |
+| Profile | User details & trip history |
+| Chatbot | AI-powered travel assistant |
 
-🤖 AI Chatbot
+---
 
-Persistent chatbot widget on all pages
+## 🛠️ Tech Stack
 
-Destination recommendations
+- **Frontend:** HTML, CSS, JavaScript  
+- **Backend:** PHP  
+- **Database:** MySQL  
+- **Hosting:** InfinityFree  
+- **Chatbot:** Web-based Conversational AI  
 
-Booking assistance
+---
 
-FAQ & automated support
+## 🚀 Deployment (InfinityFree)
 
-Lead capture from conversations
+This project is deployed using **InfinityFree** free hosting.
 
-🧠 CRM System
+### Hosting Features
+- PHP & MySQL support  
+- No server configuration required  
+- Easy upload via File Manager or FTP  
 
-User profile management
+🔗 **Live URL:** https://travellers.infinityfreeapp.com/
 
-Trip history tracking
+---
 
-Lead management
+## ⚙️ Local Installation (Optional)
 
-Support ticket creation
+1. Clone this repository  
+   ```bash
+   git clone https://github.com/HeshaniThennakoon/Travel_Website.git
+   ```
+2. Move files to your local server (e.g., `htdocs`)  
+3. Import the MySQL database  
+4. Update database credentials in the config file  
+5. Run using XAMPP / WAMP  
 
-Interaction tracking & analytics
+---
 
-Admin & support agent roles
+## 🔐 Security
 
-👥 User Roles
+- Role-based access control  
+- Secure authentication  
+- Restricted CRM access  
 
-Visitor – Browse destinations and chat with the bot
+---
 
-Registered User – Book trips and manage profile
+## 📈 Future Improvements
 
-Admin – Manage users, leads, trips, and reports
+- Online payment gateway  
+- Advanced analytics dashboard  
+- Email & SMS automation  
+- Live agent chatbot escalation  
+- Improved admin UI  
 
-Support Agent – Handle customer tickets and inquiries
+---
 
-📄 Pages & Modules
-Module	Description
-Home Page	Featured trips, search bar, chatbot
-Search Results	Filtered travel packages
-Booking Page	Step-by-step booking flow
-User Profile	View & update user data
-Chatbot Widget	24/7 user assistance
-CRM Dashboard	User, lead & ticket management
-🛠️ Tech Stack
+## 👩‍💻 Author
 
-Frontend
+**Heshani Thennakoon**  
+Software Engineer | Full Stack Developer | AI & Data Science Enthusiast  
 
-HTML
+---
 
-CSS
+## 📜 License
 
-JavaScript
-
-Backend
-
-PHP
-
-Database
-
-MySQL
-
-Hosting
-
-InfinityFree (Free Hosting)
-
-Chatbot
-
-Web-based conversational AI integration
-
-🚀 Deployment
-
-This project is deployed using InfinityFree:
-
-PHP & MySQL supported
-
-No server configuration required
-
-File upload via FTP / File Manager
-
-🔗 Live URL:
-https://travellers.infinityfreeapp.com/
-
-⚙️ Local Setup (Optional)
-# 1. Clone the repository
-git clone https://github.com/your-username/travellers.git
-
-# 2. Move project to local server directory (e.g., htdocs)
-
-# 3. Import MySQL database
-
-# 4. Update database credentials in config file
-
-# 5. Run using XAMPP / WAMP
-
-🔐 Security
-
-Role-based access control
-
-User authentication & authorization
-
-Restricted CRM access
-
-📈 Future Improvements
-
-Online payment gateway
-
-Advanced analytics dashboard
-
-Email & SMS automation
-
-Live agent handover from chatbot
-
-Improved admin UI
-
-API integration for travel services
-
-👩‍💻 Author
-
-Heshani Thennakoon
-Software Engineer | Full-Stack Developer | AI & Data Science Enthusiast
-
-📍 Sri Lanka
-💼 Client-based Project
-
-📜 License
-
-This project is developed for client.
+This project is **client-based** project.
