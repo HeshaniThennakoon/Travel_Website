@@ -1,7 +1,9 @@
 <?php
 
     // Base URL
-    define('SITE_URL','http://127.0.0.1:8080/');
+    if(!defined('SITE_URL')){
+        define('SITE_URL','http://127.0.0.1:8080/');
+    }
 
     // Team images for frontend
     define('ABOUT_IMG_PATH', SITE_URL.'images/about/Team/');
@@ -17,7 +19,7 @@
     define('USERS_FOLDER','users/');
 
     // sendgrid api key
-    define('SENDGRID_API_KEY',"<Sendgrid API Key>"); //Sendgrid API Key should be added here!
+    define('SENDGRID_API_KEY',"YOUR_SENDGRID_API_KEY_HERE"); 
     define('SENDGRID_EMAIL',"heshanithennakoon118@gmail.com");
     define('SENDGRID_NAME',"GH WEBDEV");
 
@@ -88,10 +90,10 @@
     function deleteImage($image, $folder)
     {   
         $path = UPLOAD_IMAGE_PATH.$folder.$image;
-        if(file_exists($path) && unlink($path)){
-            return true;
+        if(file_exists($path)){
+            unlink($path);
         }
-        return false;
+        return true;
     }
 
     function uploadUserImage($image)

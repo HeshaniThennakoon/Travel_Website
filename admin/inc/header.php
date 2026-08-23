@@ -1,5 +1,18 @@
+<?php
+require_once('essentials.php');
+require_once('db_config.php');
+
+$settings_q = "SELECT `site_title` FROM `settings` LIMIT 1";
+$settings_r = mysqli_query($conn, $settings_q);
+if(mysqli_num_rows($settings_r) > 0){
+    $row = mysqli_fetch_assoc($settings_r);
+    $site_title = $row['site_title'];
+}
+?>
+
+
 <div class="container-fluid bg-dark text-light p-3 d-flex align-items-center justify-content-between sticky-top">
-    <h3 class="mb-0 h-font">GH Travelers</h3>
+    <h3 class="mb-0 h-font"><?php echo htmlspecialchars($site_title); ?></h3>
     <a href="logout.php" class="btn btn-light btn-sm">LOG OUT</a>
 </div>
 
